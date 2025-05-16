@@ -204,18 +204,32 @@ async function handleEmailSubmit(event) {
     const emailInput = document.getElementById('emailInput');
     const email = emailInput.value;
     const submitBtn = document.querySelector('.submit-btn');
+    const statusMessage = document.createElement('div');
+    statusMessage.className = 'status-message';
+    
+    // Remove any existing status message
+    const existingStatus = document.querySelector('.status-message');
+    if (existingStatus) {
+        existingStatus.remove();
+    }
     
     if (!email) {
-        alert('Please enter your email address.');
+        showStatus('Please enter your email address.', 'error');
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        showStatus('Please enter a valid email address.', 'error');
         return;
     }
 
     // Disable button and show loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'Subscribing...';
+    showStatus('Subscribing...', 'info');
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyLD_17oRiDJZ-I0TNf1CPHeN4_VDSJUd42fVDXgj-mEKJ7PoBtf9cWVM9MIOnb6I4CAQ/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyNXSjHLoTKbmGRR6PiLYqE2TLiuohhfXSB5FE19Qn8iVVhNH5clmU1W3Ut8pBYmNYOsA/exec', {
             method: 'POST',
             body: JSON.stringify({ email: email }),
             headers: {
@@ -223,21 +237,49 @@ async function handleEmailSubmit(event) {
             }
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const result = await response.json();
 
         if (result.result === 'success') {
-            alert('Thank you for subscribing!');
-            closeModal();
-            emailInput.value = '';
+            showStatus('Thank you for subscribing!', 'success');
+            // Store in localStorage to prevent showing modal again
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            subscribers.push(email);
+            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            
+            setTimeout(() => {
+                closeModal();
+                emailInput.value = '';
+            }, 2000);
         } else {
-            throw new Error('Subscription failed');
+            throw new Error(result.message || 'Subscription failed');
         }
     } catch (error) {
-        alert('Sorry, there was an error. Please try again later.');
+        console.error('Subscription error:', error);
+        showStatus(
+            error.message === 'Failed to fetch' 
+                ? 'Unable to connect to the server. Please check your internet connection.'
+                : `Error: ${error.message}`,
+            'error'
+        );
     } finally {
         // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Subscribe';
+    }
+    
+    function showStatus(message, type) {
+        const statusDiv = document.querySelector('.status-message') || document.createElement('div');
+        statusDiv.className = `status-message ${type}`;
+        statusDiv.textContent = message;
+        
+        const form = document.getElementById('emailForm');
+        if (!form.contains(statusDiv)) {
+            form.insertBefore(statusDiv, form.firstChild);
+        }
     }
 }
 
