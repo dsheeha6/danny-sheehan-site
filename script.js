@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Fade in DS logo
+    setTimeout(() => {
+        document.querySelector('.ds-logo').classList.add('fade-in');
+    }, 500);
+
     // Initialize image loading
     initializeImageLoading();
     
@@ -104,6 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('musicVolume', e.target.value);
         });
     }
+
+    // Initialize star ratings
+    document.querySelectorAll('.stars').forEach(starsElement => {
+        const fullStars = starsElement.textContent.split('★').length - 1;
+        const hasHalf = starsElement.textContent.includes('½');
+        const rating = hasHalf ? fullStars - 0.5 : fullStars;
+        starsElement.setAttribute('data-rating', rating);
+    });
 });
 
 // Image loading functionality

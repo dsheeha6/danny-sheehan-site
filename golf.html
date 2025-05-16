@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golf Courses - Danny Sheehan</title>
+    <title>Golf Adventures - Danny Sheehan</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,199 +14,294 @@
     <div class="ds-logo">
         <a href="index.html">[DS]</a>
     </div>
-    <nav class="back-nav">
+
+    <div class="back-nav">
         <div class="container">
-            <a href="index.html">← Back to Home</a>
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
-    </nav>
+    </div>
 
     <main class="container">
         <section id="golf">
-            <h1>Golf Courses I've Played</h1>
+            <h1>Golf Course Adventures</h1>
             <div class="course-grid">
-                <div class="course-card" onclick="toggleCourseDetails(this)">
+                <!-- Bandon Preserve -->
+                <div class="course-card">
                     <div class="course-image">
                         <div class="image-wrapper" data-src="images/golf/bandon-preserve.png">
-                            <img src="images/golf/previews/bandon-preserve-preview.jpg" 
-                                 alt="Bandon Preserve Golf Course" 
-                                 class="preview-img">
-                            <img src="images/golf/bandon-preserve.png" 
-                                 alt="Bandon Preserve Golf Course"
-                                 class="full-img"
-                                 loading="lazy">
+                            <img src="images/golf/previews/bandon-preserve-preview.jpg" alt="Bandon Preserve Golf Course" class="preview-img">
+                            <img src="images/golf/bandon-preserve.png" alt="Bandon Preserve Golf Course" class="full-img" loading="lazy">
+                            <div class="image-overlay">
+                                <div class="course-info">
+                                    <p><strong>Designer:</strong> Bill Coore & Ben Crenshaw</p>
+                                    <p><strong>Length:</strong> 13 Holes, Par 3 Course</p>
+                                    <p><strong>Year:</strong> 2012</p>
+                                </div>
+                            </div>
                         </div>
-                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/bandon-preserve.png', 'Bandon Preserve - Par 3 Course')">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <div class="image-caption">Par 3 Course with Ocean Views</div>
                     </div>
-                    <div class="course-metadata">
-                        <span class="course-type">Type: Par 3 Course</span>
-                        <span class="course-length">Length: 13 Holes</span>
-                        <span class="course-played">Played: Summer 2023</span>
+                    <h2 class="course-name">Bandon Preserve</h2>
+                    <div class="course-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Bandon, Oregon
                     </div>
-                    <h3>Bandon Preserve</h3>
-                    <p>🌎 Bandon, Oregon</p>
-                    <p>⭐️⭐️⭐️⭐️⭐️</p>
-                    <div class="course-details">
-                        <p>A short course with massive views and some of the most fun holes I've ever played. Every shot is creative. Perfect warm-up for the full Bandon experience.</p>
-                        <div class="course-highlights">
-                            <span class="highlight">Ocean Views</span>
-                            <span class="highlight">Links Style</span>
-                            <span class="highlight">Walking Only</span>
+                    <div class="course-date">
+                        <i class="far fa-calendar"></i>
+                        Played: June 2024
+                    </div>
+                    <p class="course-description">
+                        A stunning par-3 course that feels like heaven. Every hole is challenging and scenic. Best golf experience I've had.
+                    </p>
+                    <div class="course-ratings">
+                        <div class="rating-item">
+                            <span class="rating-label">Design</span>
+                            <div class="stars">★★★★★</div>
                         </div>
-                        <a href="https://www.bandondunesgolf.com/golf/courses/bandon-preserve" target="_blank">Visit Site</a>
+                        <div class="rating-item">
+                            <span class="rating-label">Pureness</span>
+                            <div class="stars">★★★★½</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">History</span>
+                            <div class="stars">★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Cost</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Fun Factor</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
                     </div>
+                    <a href="https://www.bandondunesgolf.com/golf/courses/bandon-preserve" target="_blank" class="course-website">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Course Website
+                    </a>
                 </div>
 
-                <div class="course-card" onclick="toggleCourseDetails(this)">
+                <!-- TPC Sawgrass -->
+                <div class="course-card">
                     <div class="course-image">
                         <div class="image-wrapper" data-src="images/golf/tpc-sawgrass.png">
-                            <img src="images/golf/previews/tpc-sawgrass-preview.jpg" 
-                                 alt="TPC Sawgrass Golf Course" 
-                                 class="preview-img">
-                            <img src="images/golf/tpc-sawgrass.png" 
-                                 alt="TPC Sawgrass Golf Course"
-                                 class="full-img"
-                                 loading="lazy">
+                            <img src="images/golf/previews/tpc-sawgrass-preview.jpg" alt="TPC Sawgrass Golf Course" class="preview-img">
+                            <img src="images/golf/tpc-sawgrass.png" alt="TPC Sawgrass Golf Course" class="full-img" loading="lazy">
+                            <div class="image-overlay">
+                                <div class="course-info">
+                                    <p><strong>Designer:</strong> Pete Dye</p>
+                                    <p><strong>Length:</strong> 7,245 yards, Par 72</p>
+                                    <p><strong>Year:</strong> 1980</p>
+                                </div>
+                            </div>
                         </div>
-                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/tpc-sawgrass.png', 'TPC Sawgrass - Stadium Course')">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <div class="image-caption">Home of THE PLAYERS Championship</div>
                     </div>
-                    <div class="course-metadata">
-                        <span class="course-type">Type: Championship Course</span>
-                        <span class="course-length">Length: 7,245 yards</span>
-                        <span class="course-played">Played: Spring 2023</span>
+                    <h2 class="course-name">TPC Sawgrass</h2>
+                    <div class="course-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Ponte Vedra Beach, Florida
                     </div>
-                    <h3>TPC Sawgrass</h3>
-                    <p>🌎 Ponte Vedra Beach, Florida</p>
-                    <p>⭐️⭐️⭐️⭐️½</p>
-                    <div class="course-details">
-                        <p>Legendary course with an unforgettable finish. The 17th hole is even more intense in person. Expensive but iconic.</p>
-                        <div class="course-highlights">
-                            <span class="highlight">Island Green</span>
-                            <span class="highlight">PGA TOUR Venue</span>
-                            <span class="highlight">Stadium Design</span>
+                    <div class="course-date">
+                        <i class="far fa-calendar"></i>
+                        Played: July 2024
+                    </div>
+                    <p class="course-description">
+                        Iconic and unforgettable. From the 17th hole to the conditioning, it's top-tier in every way.
+                    </p>
+                    <div class="course-ratings">
+                        <div class="rating-item">
+                            <span class="rating-label">Design</span>
+                            <div class="stars">★★★★★</div>
                         </div>
-                        <a href="https://tpc.com/sawgrass/" target="_blank">Visit Site</a>
+                        <div class="rating-item">
+                            <span class="rating-label">Pureness</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">History</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Cost</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Fun Factor</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
                     </div>
+                    <a href="https://tpc.com/sawgrass" target="_blank" class="course-website">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Course Website
+                    </a>
                 </div>
 
-                <div class="course-card" onclick="toggleCourseDetails(this)">
+                <!-- Atlantic Dunes -->
+                <div class="course-card">
                     <div class="course-image">
                         <div class="image-wrapper" data-src="images/golf/atlantic-dunes.png">
-                            <img src="images/golf/previews/atlantic-dunes-preview.jpg" 
-                                 alt="Atlantic Dunes Golf Course" 
-                                 class="preview-img">
-                            <img src="images/golf/atlantic-dunes.png" 
-                                 alt="Atlantic Dunes Golf Course"
-                                 class="full-img"
-                                 loading="lazy">
-                        </div>
-                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/atlantic-dunes.png', 'Atlantic Dunes by Davis Love III')">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <div class="image-caption">Coastal Beauty by Davis Love III</div>
-                    </div>
-                    <div class="course-metadata">
-                        <span class="course-type">Type: Resort Course</span>
-                        <span class="course-length">Length: 7,065 yards</span>
-                        <span class="course-played">Played: Fall 2023</span>
-                    </div>
-                    <h3>Atlantic Dunes</h3>
-                    <p>🌎 Hilton Head Island, South Carolina</p>
-                    <p>⭐️⭐️⭐️⭐️</p>
-                    <div class="course-details">
-                        <p>Tight layout and beautiful visuals. Underrated compared to its neighbors. Solid conditioning and great design.</p>
-                        <div class="course-highlights">
-                            <span class="highlight">Ocean Views</span>
-                            <span class="highlight">Resort Style</span>
-                            <span class="highlight">Strategic Layout</span>
+                            <img src="images/golf/previews/atlantic-dunes-preview.jpg" alt="Atlantic Dunes Golf Course" class="preview-img">
+                            <img src="images/golf/atlantic-dunes.png" alt="Atlantic Dunes Golf Course" class="full-img" loading="lazy">
+                            <div class="image-overlay">
+                                <div class="course-info">
+                                    <p><strong>Designer:</strong> Davis Love III</p>
+                                    <p><strong>Length:</strong> 7,065 yards, Par 72</p>
+                                    <p><strong>Year:</strong> 2016</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <h2 class="course-name">Atlantic Dunes</h2>
+                    <div class="course-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Hilton Head Island, SC
+                    </div>
+                    <div class="course-date">
+                        <i class="far fa-calendar"></i>
+                        Played: August 2024
+                    </div>
+                    <p class="course-description">
+                        Beautiful layout with coastal vibes. A bit overpriced but enjoyable and visually appealing.
+                    </p>
+                    <div class="course-ratings">
+                        <div class="rating-item">
+                            <span class="rating-label">Design</span>
+                            <div class="stars">★★★½</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Pureness</span>
+                            <div class="stars">★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">History</span>
+                            <div class="stars">★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Cost</span>
+                            <div class="stars">★★★★½</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Fun Factor</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                    </div>
+                    <a href="https://www.seapines.com/golf/courses/atlantic-dunes-by-davis-love" target="_blank" class="course-website">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Course Website
+                    </a>
                 </div>
 
-                <div class="course-card" onclick="toggleCourseDetails(this)">
-                    <div class="course-image">
-                        <div class="image-wrapper" data-src="images/golf/hartefeld-national.png">
-                            <img src="images/golf/previews/hartefeld-national-preview.jpg" 
-                                 alt="Hartefeld National Golf Course" 
-                                 class="preview-img">
-                            <img src="images/golf/hartefeld-national.png" 
-                                 alt="Hartefeld National Golf Course"
-                                 class="full-img"
-                                 loading="lazy">
-                        </div>
-                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/hartefeld-national.png', 'Hartefeld National')">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <div class="image-caption">Private Club Excellence</div>
-                    </div>
-                    <div class="course-metadata">
-                        <span class="course-type">Type: Private Club</span>
-                        <span class="course-length">Length: 7,099 yards</span>
-                        <span class="course-played">Played: Summer 2023</span>
-                    </div>
-                    <h3>Hartefeld National</h3>
-                    <p>🌎 Avondale, Pennsylvania</p>
-                    <p>⭐️⭐️⭐️⭐️</p>
-                    <div class="course-details">
-                        <p>Strong test of golf with excellent greens. Private club with top-notch service and scenic holes through the woods.</p>
-                        <div class="course-highlights">
-                            <span class="highlight">Private Club</span>
-                            <span class="highlight">Woodland Setting</span>
-                            <span class="highlight">Fast Greens</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card" onclick="toggleCourseDetails(this)">
+                <!-- Governors Towne Club -->
+                <div class="course-card">
                     <div class="course-image">
                         <div class="image-wrapper" data-src="images/golf/governors-towne.png">
-                            <img src="images/golf/previews/governors-towne-preview.jpg" 
-                                 alt="Governors Towne Club Golf Course" 
-                                 class="preview-img">
-                            <img src="images/golf/governors-towne.png" 
-                                 alt="Governors Towne Club Golf Course"
-                                 class="full-img"
-                                 loading="lazy">
-                        </div>
-                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/governors-towne.png', 'Governors Towne Club')">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                        <div class="image-caption">Home Course Excellence</div>
-                    </div>
-                    <div class="course-metadata">
-                        <span class="course-type">Type: Private Club</span>
-                        <span class="course-length">Length: 7,200 yards</span>
-                        <span class="course-played">Home Course</span>
-                    </div>
-                    <h3>Governors Towne Club</h3>
-                    <p>🌎 Acworth, Georgia</p>
-                    <p>⭐️⭐️⭐️⭐️½</p>
-                    <div class="course-details">
-                        <p>My home track. Fast greens, solid layout, and great community. Always improving and tough to beat on a good day.</p>
-                        <div class="course-highlights">
-                            <span class="highlight">Private Club</span>
-                            <span class="highlight">Championship Layout</span>
-                            <span class="highlight">Practice Facility</span>
+                            <img src="images/golf/previews/governors-towne-preview.jpg" alt="Governors Towne Club Golf Course" class="preview-img">
+                            <img src="images/golf/governors-towne.png" alt="Governors Towne Club Golf Course" class="full-img" loading="lazy">
+                            <div class="image-overlay">
+                                <div class="course-info">
+                                    <p><strong>Designer:</strong> Curtis Strange</p>
+                                    <p><strong>Length:</strong> 7,200 yards, Par 72</p>
+                                    <p><strong>Year:</strong> 2005</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <h2 class="course-name">Governors Towne Club</h2>
+                    <div class="course-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Acworth, Georgia
+                    </div>
+                    <div class="course-date">
+                        <i class="far fa-calendar"></i>
+                        Played: Ongoing (Home Course)
+                    </div>
+                    <p class="course-description">
+                        My home course. Solid layout with fast greens and a fun back nine. Good conditioning.
+                    </p>
+                    <div class="course-ratings">
+                        <div class="rating-item">
+                            <span class="rating-label">Design</span>
+                            <div class="stars">★★★½</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Pureness</span>
+                            <div class="stars">★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">History</span>
+                            <div class="stars">★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Cost</span>
+                            <div class="stars">★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Fun Factor</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                    </div>
+                    <a href="https://governorstowneclub.com/" target="_blank" class="course-website">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Course Website
+                    </a>
+                </div>
+
+                <!-- Hartefeld National -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/hartefeld-national.png">
+                            <img src="images/golf/previews/hartefeld-national-preview.jpg" alt="Hartefeld National Golf Course" class="preview-img">
+                            <img src="images/golf/hartefeld-national.png" alt="Hartefeld National Golf Course" class="full-img" loading="lazy">
+                            <div class="image-overlay">
+                                <div class="course-info">
+                                    <p><strong>Designer:</strong> Tom Fazio</p>
+                                    <p><strong>Length:</strong> 7,099 yards, Par 72</p>
+                                    <p><strong>Year:</strong> 1995</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="course-name">Hartefeld National</h2>
+                    <div class="course-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Avondale, PA
+                    </div>
+                    <div class="course-date">
+                        <i class="far fa-calendar"></i>
+                        Played: July 2019
+                    </div>
+                    <p class="course-description">
+                        My first home course growing up. Rolling hills and smooth greens. Memorable for me.
+                    </p>
+                    <div class="course-ratings">
+                        <div class="rating-item">
+                            <span class="rating-label">Design</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Pureness</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">History</span>
+                            <div class="stars">★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Cost</span>
+                            <div class="stars">★★★</div>
+                        </div>
+                        <div class="rating-item">
+                            <span class="rating-label">Fun Factor</span>
+                            <div class="stars">★★★★</div>
+                        </div>
+                    </div>
+                    <a href="https://www.invitedclubs.com/clubs/hartefeld-national" target="_blank" class="course-website">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Course Website
+                    </a>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <button class="close-lightbox" onclick="closeLightbox()">
-            <i class="fas fa-times"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="Golf Course Full View">
-        <div id="lightbox-caption" class="lightbox-caption"></div>
-    </div>
 
     <footer>
         <div class="container">
