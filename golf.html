@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Courses - Danny Sheehan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="ds-logo">
+        <a href="index.html">[DS]</a>
+    </div>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="golf">
+            <h1>Golf Courses I've Played</h1>
+            <div class="course-grid">
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/bandon-preserve.png">
+                            <img src="images/golf/previews/bandon-preserve-preview.jpg" 
+                                 alt="Bandon Preserve Golf Course" 
+                                 class="preview-img">
+                            <img src="images/golf/bandon-preserve.png" 
+                                 alt="Bandon Preserve Golf Course"
+                                 class="full-img"
+                                 loading="lazy">
+                        </div>
+                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/bandon-preserve.png', 'Bandon Preserve - Par 3 Course')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-caption">Par 3 Course with Ocean Views</div>
+                    </div>
+                    <div class="course-metadata">
+                        <span class="course-type">Type: Par 3 Course</span>
+                        <span class="course-length">Length: 13 Holes</span>
+                        <span class="course-played">Played: Summer 2023</span>
+                    </div>
+                    <h3>Bandon Preserve</h3>
+                    <p>🌎 Bandon, Oregon</p>
+                    <p>⭐️⭐️⭐️⭐️⭐️</p>
+                    <div class="course-details">
+                        <p>A short course with massive views and some of the most fun holes I've ever played. Every shot is creative. Perfect warm-up for the full Bandon experience.</p>
+                        <div class="course-highlights">
+                            <span class="highlight">Ocean Views</span>
+                            <span class="highlight">Links Style</span>
+                            <span class="highlight">Walking Only</span>
+                        </div>
+                        <a href="https://www.bandondunesgolf.com/golf/courses/bandon-preserve" target="_blank">Visit Site</a>
+                    </div>
+                </div>
+
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/tpc-sawgrass.png">
+                            <img src="images/golf/previews/tpc-sawgrass-preview.jpg" 
+                                 alt="TPC Sawgrass Golf Course" 
+                                 class="preview-img">
+                            <img src="images/golf/tpc-sawgrass.png" 
+                                 alt="TPC Sawgrass Golf Course"
+                                 class="full-img"
+                                 loading="lazy">
+                        </div>
+                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/tpc-sawgrass.png', 'TPC Sawgrass - Stadium Course')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-caption">Home of THE PLAYERS Championship</div>
+                    </div>
+                    <div class="course-metadata">
+                        <span class="course-type">Type: Championship Course</span>
+                        <span class="course-length">Length: 7,245 yards</span>
+                        <span class="course-played">Played: Spring 2023</span>
+                    </div>
+                    <h3>TPC Sawgrass</h3>
+                    <p>🌎 Ponte Vedra Beach, Florida</p>
+                    <p>⭐️⭐️⭐️⭐️½</p>
+                    <div class="course-details">
+                        <p>Legendary course with an unforgettable finish. The 17th hole is even more intense in person. Expensive but iconic.</p>
+                        <div class="course-highlights">
+                            <span class="highlight">Island Green</span>
+                            <span class="highlight">PGA TOUR Venue</span>
+                            <span class="highlight">Stadium Design</span>
+                        </div>
+                        <a href="https://tpc.com/sawgrass/" target="_blank">Visit Site</a>
+                    </div>
+                </div>
+
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/atlantic-dunes.png">
+                            <img src="images/golf/previews/atlantic-dunes-preview.jpg" 
+                                 alt="Atlantic Dunes Golf Course" 
+                                 class="preview-img">
+                            <img src="images/golf/atlantic-dunes.png" 
+                                 alt="Atlantic Dunes Golf Course"
+                                 class="full-img"
+                                 loading="lazy">
+                        </div>
+                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/atlantic-dunes.png', 'Atlantic Dunes by Davis Love III')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-caption">Coastal Beauty by Davis Love III</div>
+                    </div>
+                    <div class="course-metadata">
+                        <span class="course-type">Type: Resort Course</span>
+                        <span class="course-length">Length: 7,065 yards</span>
+                        <span class="course-played">Played: Fall 2023</span>
+                    </div>
+                    <h3>Atlantic Dunes</h3>
+                    <p>🌎 Hilton Head Island, South Carolina</p>
+                    <p>⭐️⭐️⭐️⭐️</p>
+                    <div class="course-details">
+                        <p>Tight layout and beautiful visuals. Underrated compared to its neighbors. Solid conditioning and great design.</p>
+                        <div class="course-highlights">
+                            <span class="highlight">Ocean Views</span>
+                            <span class="highlight">Resort Style</span>
+                            <span class="highlight">Strategic Layout</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/hartefeld-national.png">
+                            <img src="images/golf/previews/hartefeld-national-preview.jpg" 
+                                 alt="Hartefeld National Golf Course" 
+                                 class="preview-img">
+                            <img src="images/golf/hartefeld-national.png" 
+                                 alt="Hartefeld National Golf Course"
+                                 class="full-img"
+                                 loading="lazy">
+                        </div>
+                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/hartefeld-national.png', 'Hartefeld National')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-caption">Private Club Excellence</div>
+                    </div>
+                    <div class="course-metadata">
+                        <span class="course-type">Type: Private Club</span>
+                        <span class="course-length">Length: 7,099 yards</span>
+                        <span class="course-played">Played: Summer 2023</span>
+                    </div>
+                    <h3>Hartefeld National</h3>
+                    <p>🌎 Avondale, Pennsylvania</p>
+                    <p>⭐️⭐️⭐️⭐️</p>
+                    <div class="course-details">
+                        <p>Strong test of golf with excellent greens. Private club with top-notch service and scenic holes through the woods.</p>
+                        <div class="course-highlights">
+                            <span class="highlight">Private Club</span>
+                            <span class="highlight">Woodland Setting</span>
+                            <span class="highlight">Fast Greens</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" onclick="toggleCourseDetails(this)">
+                    <div class="course-image">
+                        <div class="image-wrapper" data-src="images/golf/governors-towne.png">
+                            <img src="images/golf/previews/governors-towne-preview.jpg" 
+                                 alt="Governors Towne Club Golf Course" 
+                                 class="preview-img">
+                            <img src="images/golf/governors-towne.png" 
+                                 alt="Governors Towne Club Golf Course"
+                                 class="full-img"
+                                 loading="lazy">
+                        </div>
+                        <button class="expand-image" onclick="openLightbox(event, 'images/golf/governors-towne.png', 'Governors Towne Club')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-caption">Home Course Excellence</div>
+                    </div>
+                    <div class="course-metadata">
+                        <span class="course-type">Type: Private Club</span>
+                        <span class="course-length">Length: 7,200 yards</span>
+                        <span class="course-played">Home Course</span>
+                    </div>
+                    <h3>Governors Towne Club</h3>
+                    <p>🌎 Acworth, Georgia</p>
+                    <p>⭐️⭐️⭐️⭐️½</p>
+                    <div class="course-details">
+                        <p>My home track. Fast greens, solid layout, and great community. Always improving and tough to beat on a good day.</p>
+                        <div class="course-highlights">
+                            <span class="highlight">Private Club</span>
+                            <span class="highlight">Championship Layout</span>
+                            <span class="highlight">Practice Facility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="close-lightbox" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Golf Course Full View">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dannysheehan-" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/dannysheehan__" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="contact">Get in touch: <a href="mailto:daniel.sheehan03@gmail.com">daniel.sheehan03@gmail.com</a></p>
+            <p class="copyright">&copy; 2024 Danny Sheehan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

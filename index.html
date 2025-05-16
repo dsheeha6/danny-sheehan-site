@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DannySheehan.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="ds-logo">
+        <a href="index.html">[DS]</a>
+    </div>
+    <header class="hero">
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="hero-background.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-content">
+            <div class="profile-picture">
+                <img src="profile.jpg" alt="Danny Sheehan" />
+            </div>
+            <div class="container">
+                <h1>Danny Sheehan</h1>
+                <p class="subtitle">Entrepreneur • Car Enthusiast • Golfer • World Traveler</p>
+                <p class="intro">Based in Atlanta, GA. Passionate about building things, traveling, and learning new skills.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cta-buttons">
+            <a href="travel.html" class="cta-button">
+                <i class="fas fa-map-marked-alt"></i>
+                Explore My Travels
+            </a>
+            <a href="golf.html" class="cta-button">
+                <i class="fas fa-flag"></i>
+                View Golf Adventures
+            </a>
+            <a href="blog.html" class="cta-button">
+                <i class="fas fa-book-open"></i>
+                Read My Blog
+            </a>
+        </div>
+
+        <section class="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm an entrepreneur, marketer, and car/golf enthusiast currently based in Atlanta, GA. I love building things, traveling, and learning new skills. My journey combines business acumen with a passion for automotive culture and golf, creating a unique perspective on life and work.</p>
+                
+                <div class="interests">
+                    <div class="interest-item">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Business</h3>
+                        <p>Passionate about entrepreneurship and marketing, always looking for new opportunities to innovate and create value.</p>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-car"></i>
+                        <h3>Automotive</h3>
+                        <p>Car enthusiast with a deep appreciation for automotive culture, design, and performance.</p>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-golf-ball"></i>
+                        <h3>Golf</h3>
+                        <p>Avid golfer exploring courses across the country, constantly improving my game and enjoying the challenge.</p>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-plane"></i>
+                        <h3>Travel</h3>
+                        <p>World traveler experiencing different cultures and creating lasting memories across the globe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dannysheehan-" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/dannysheehan__" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="contact">Get in touch: <a href="mailto:daniel.sheehan03@gmail.com">daniel.sheehan03@gmail.com</a></p>
+            <p class="copyright">&copy; 2024 Danny Sheehan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Email Collection Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <h2>Stay Connected!</h2>
+            <p>Enter your email to receive updates and news.</p>
+            <form id="emailForm" onsubmit="return handleEmailSubmit(event)">
+                <input type="email" id="emailInput" placeholder="Your email address" required>
+                <div class="modal-buttons">
+                    <button type="submit" class="submit-btn">Subscribe</button>
+                    <button type="button" class="decline-btn" onclick="closeModal()">No Thanks</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Danny Sheehan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="ds-logo">
+        <a href="index.html">[DS]</a>
+    </div>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Blog</h1>
+        
+        <section class="blog-section">
+            <!-- Blog Preview Card -->
+            <div class="blog-card">
+                <div class="blog-image placeholder">
+                    Learning to Code with AI
+                </div>
+                <h3>Why I'm Learning to Code with AI (Cursor + ChatGPT Changed the Game)</h3>
+                <p class="blog-date">Published: May 15, 2025</p>
+                <p class="blog-excerpt">As someone with no traditional coding background, I never thought I'd be building websites. Here's how AI changed that...</p>
+                <button class="read-more-btn" onclick="showPost()">Read More</button>
+            </div>
+
+            <!-- Full Blog Post -->
+            <div id="full-post" class="full-post">
+                <h2>Why I'm Learning to Code with AI (Cursor + ChatGPT Changed the Game)</h2>
+                <p class="blog-date">Published: May 15, 2025</p>
+                <div class="blog-content">
+                    <p>As someone without a traditional coding background, I never thought I'd be building websites, apps, or digital tools. But with the rise of <strong>AI-powered coding assistants like ChatGPT and Cursor</strong>, everything has changed. Today, learning to code is no longer about memorizing syntax — it's about thinking creatively, problem-solving, and building real things fast.</p>
+                    <p>This is why I'm learning to code in 2025 — and why <strong>AI is my co-pilot</strong> on this journey.</p>
+
+                    <h3>Why I Chose AI Tools to Learn Coding</h3>
+                    <p>I didn't go to school for computer science. I studied entrepreneurship and business. But I quickly realized:</p>
+                    <blockquote><em>"Every great idea today needs a digital layer — whether that's a website, an app, or a tool."</em></blockquote>
+                    <p>So I turned to <strong>AI-assisted coding tools</strong> like:</p>
+                    <ul>
+                        <li><strong>Cursor</strong>: an AI-native code editor that helps me write and understand code</li>
+                        <li><strong>ChatGPT</strong>: my on-demand tutor, debugger, and brainstorm assistant</li>
+                    </ul>
+                    <p>Together, they helped me go from zero to launching a <strong>live, multi-page personal website</strong> without prior experience.</p>
+
+                    <h3>What I've Built (So Far)</h3>
+                    <p>With just these tools, I've launched:</p>
+                    <ul>
+                        <li>✅ A clean, modern portfolio website</li>
+                        <li>✅ A dynamic golf course review page with lightbox images</li>
+                        <li>✅ An accordion-style travel section</li>
+                        <li>✅ A blog with a working comment system</li>
+                    </ul>
+
+                    <h3>It Handles SEO, Performance, and Mobile Too</h3>
+                    <p>AI helps ensure my site loads fast, looks good on phones, and follows modern best practices — all without hiring a developer.</p>
+
+                    <h3>The End Goal: Builder, Not Just Coder</h3>
+                    <p>I'm learning to code not to be a full-time dev, but to <strong>build and launch things quickly</strong>. AI makes that possible.</p>
+
+                    <h3>Tools I Recommend</h3>
+                    <ul>
+                        <li><a href="https://www.cursor.so/" target="_blank">Cursor</a></li>
+                        <li><a href="https://chat.openai.com/" target="_blank">ChatGPT</a></li>
+                        <li><a href="https://www.netlify.com/" target="_blank">Netlify</a></li>
+                        <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
+                    </ul>
+
+                    <h3>Final Thoughts</h3>
+                    <p>If you're like me — a creator or entrepreneur — now is the best time to start. You don't need to become a full-stack engineer. You just need to build.</p>
+                    <p>And with tools like Cursor and ChatGPT, <strong>you never build alone</strong>.</p>
+
+                    <p><strong>Check out what I've built:</strong></p>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
+                        <li><a href="golf.html">Golf Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div class="comment-section">
+                    <h3>Leave a Comment</h3>
+                    <div class="comment-form">
+                        <input type="text" id="name" placeholder="Your name" class="comment-input">
+                        <textarea id="comment" placeholder="Your comment" class="comment-input"></textarea>
+                        <button onclick="submitComment()" class="submit-btn">Submit Comment</button>
+                    </div>
+                    <div id="comment-section" class="comments-list">
+                        <!-- Comments will appear here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dannysheehan-" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/dannysheehan__" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="contact">Get in touch: <a href="mailto:daniel.sheehan03@gmail.com">daniel.sheehan03@gmail.com</a></p>
+            <p class="copyright">&copy; 2024 Danny Sheehan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPost() {
+            const fullPost = document.getElementById('full-post');
+            const blogCard = document.querySelector('.blog-card');
+            
+            fullPost.style.display = 'block';
+            blogCard.style.display = 'none';
+            
+            // Scroll to top of the full post
+            fullPost.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitComment() {
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+            
+            if (!name || !comment) {
+                alert('Please fill in both name and comment fields.');
+                return;
+            }
+
+            const commentSection = document.getElementById('comment-section');
+            const date = new Date().toLocaleDateString();
+            
+            const commentHTML = `
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">${name}</span>
+                        <span class="comment-date">${date}</span>
+                    </div>
+                    <p class="comment-text">${comment}</p>
+                </div>
+            `;
+            
+            commentSection.insertAdjacentHTML('afterbegin', commentHTML);
+            
+            // Clear the form
+            document.getElementById('name').value = '';
+            document.getElementById('comment').value = '';
+        }
+    </script>
+</body>
+</html> 

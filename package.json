@@ -1,0 +1,11 @@
+{
+  "name": "danny-sheehan-website",
+  "version": "1.0.0",
+  "description": "Danny Sheehan's personal website",
+  "scripts": {
+    "generate-previews": "node generate-previews.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.2"
+  }
+} 
