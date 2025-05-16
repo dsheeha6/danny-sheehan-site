@@ -110,6 +110,21 @@
         </div>
     </div>
 
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="play-btn" onclick="togglePlay()">
+            <i class="fas fa-play" id="playIcon"></i>
+        </button>
+        <span class="song-info">Now Playing: Background Music</span>
+        <div class="volume-control">
+            <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="updateVolume(this.value)">
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="Ohad Ben Ari - Clair de Lune Debussy.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html> 

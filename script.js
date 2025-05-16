@@ -40,6 +40,70 @@ document.addEventListener('DOMContentLoaded', function() {
     if (subscribers.length === 0) {
         setTimeout(showModal, 1500);
     }
+
+    // Music Player functionality
+    const bgMusic = document.getElementById('bgMusic');
+    const playIcon = document.getElementById('playIcon');
+    const volumeSlider = document.getElementById('volumeSlider');
+    let isPlaying = false;
+
+    // Check if audio element exists and is loaded
+    if (bgMusic) {
+        bgMusic.volume = 0.5; // Set initial volume to 50%
+        
+        // Add loading event listener
+        bgMusic.addEventListener('loadeddata', () => {
+            console.log('Music file loaded successfully');
+            document.querySelector('.music-player').style.opacity = '1';
+        });
+
+        // Add error handling
+        bgMusic.addEventListener('error', (e) => {
+            console.error('Error loading music file:', e);
+            document.querySelector('.music-player').style.display = 'none';
+        });
+    }
+
+    window.togglePlay = function() {
+        if (!bgMusic) return;
+
+        try {
+            if (isPlaying) {
+                bgMusic.pause();
+                playIcon.className = 'fas fa-play';
+            } else {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        playIcon.className = 'fas fa-pause';
+                    }).catch(error => {
+                        console.error('Error playing music:', error);
+                    });
+                }
+            }
+            isPlaying = !isPlaying;
+        } catch (error) {
+            console.error('Error toggling play state:', error);
+        }
+    }
+
+    window.updateVolume = function(value) {
+        if (!bgMusic) return;
+        bgMusic.volume = value / 100;
+    }
+
+    // Save and restore volume preference
+    if (volumeSlider) {
+        const savedVolume = localStorage.getItem('musicVolume');
+        if (savedVolume !== null) {
+            volumeSlider.value = savedVolume;
+            bgMusic.volume = savedVolume / 100;
+        }
+
+        volumeSlider.addEventListener('change', (e) => {
+            localStorage.setItem('musicVolume', e.target.value);
+        });
+    }
 });
 
 // Image loading functionality
@@ -121,42 +185,53 @@ function handleLightboxKeyPress(event) {
 }
 
 // Email collection functionality
-function handleEmailSubmit(event) {
+async function handleEmailSubmit(event) {
     event.preventDefault();
+    
     const emailInput = document.getElementById('emailInput');
-    const email = emailInput.value.trim();
+    const email = emailInput.value;
+    const submitBtn = document.querySelector('.submit-btn');
     
-    // Basic email validation
+    if (!email) {
+        alert('Please enter your email address.');
+        return;
+    }
+
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Subscribing...';
+
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyLD_17oRiDJZ-I0TNf1CPHeN4_VDSJUd42fVDXgj-mEKJ7PoBtf9cWVM9MIOnb6I4CAQ/exec', {
+            method: 'POST',
+            body: JSON.stringify({ email: email }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.result === 'success') {
+            alert('Thank you for subscribing!');
+            closeModal();
+            emailInput.value = '';
+        } else {
+            throw new Error('Subscription failed');
+        }
+    } catch (error) {
+        alert('Sorry, there was an error. Please try again later.');
+    } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Subscribe';
+    }
+}
+
+// Function to validate email format
+function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return false;
-    }
-    
-    // Store email in localStorage
-    let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-    if (subscribers.includes(email)) {
-        alert('You are already subscribed!');
-        closeModal();
-        return false;
-    }
-    
-    subscribers.push(email);
-    localStorage.setItem('subscribers', JSON.stringify(subscribers));
-    
-    // Show success message
-    const modalContent = document.querySelector('.modal-content');
-    modalContent.innerHTML = `
-        <h2>Thank You!</h2>
-        <p>You've successfully subscribed to updates.</p>
-        <div class="modal-buttons">
-            <button type="button" class="submit-btn" onclick="closeModal()">Close</button>
-        </div>
-    `;
-    
-    // Close modal after 2 seconds
-    setTimeout(closeModal, 2000);
-    return false;
+    return emailRegex.test(email);
 }
 
 // Email modal functionality
