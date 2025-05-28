@@ -21,8 +21,14 @@ The website includes a Python script to generate optimized image previews for be
    - Create optimized previews in the `previews/` directory
    - Resize images to a maximum of 800x800 pixels
    - Save previews as JPEG with 85% quality
+   - Maintain the original directory structure
 
-3. The script will maintain the original directory structure in the previews folder.
+### Troubleshooting
+
+- If you get a "directory does not exist" error, make sure the input directory path is correct
+- For best results, use quality values between 70-90
+- Supported image formats: JPG, JPEG, PNG
+- Make sure you have write permissions in the output directory
 
 ## Features
 

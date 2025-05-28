@@ -53,11 +53,15 @@ def process_directory(input_dir, output_dir, extensions=('.jpg', '.jpeg', '.png'
     # Process each file in the input directory
     for root, _, files in os.walk(input_dir):
         for file in files:
-            if file.lower().endswith(extensions):
+            file_lower = file.lower()
+            if any(file_lower.endswith(ext) for ext in extensions):
                 input_path = os.path.join(root, file)
                 # Create relative path structure in output directory
                 rel_path = os.path.relpath(input_path, input_dir)
                 output_path = os.path.join(output_dir, rel_path)
+                
+                # Ensure output directory exists
+                os.makedirs(os.path.dirname(output_path), exist_ok=True)
                 
                 # Create preview
                 create_preview(input_path, output_path)
@@ -72,6 +76,21 @@ def main():
                       help='JPEG quality (1-100)')
     
     args = parser.parse_args()
+    
+    # Validate input directory
+    if not os.path.isdir(args.input_dir):
+        print(f"Error: Input directory '{args.input_dir}' does not exist")
+        return
+    
+    # Validate max size
+    if args.max_size[0] <= 0 or args.max_size[1] <= 0:
+        print("Error: Max size dimensions must be positive")
+        return
+    
+    # Validate quality
+    if not 1 <= args.quality <= 100:
+        print("Error: Quality must be between 1 and 100")
+        return
     
     print(f"Processing images from {args.input_dir}")
     print(f"Generating previews in {args.output_dir}")
