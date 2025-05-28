@@ -12,11 +12,11 @@
 </head>
 <body>
     <div class="ds-logo">
-        <a href="index.html">[DS]</a>
+        <a href="index.html" aria-label="Home">[DS]</a>
     </div>
-    <header class="hero">
+    <header class="hero" role="banner">
         <div class="video-background">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline aria-hidden="true">
                 <source src="hero-background.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -33,45 +33,45 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="cta-buttons">
-            <a href="travel.html" class="cta-button">
-                <i class="fas fa-map-marked-alt"></i>
+    <main class="container" role="main">
+        <nav class="cta-buttons" role="navigation" aria-label="Main navigation">
+            <a href="travel.html" class="cta-button" role="button" aria-label="Explore my travels">
+                <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                 Explore My Travels
             </a>
-            <a href="golf.html" class="cta-button">
-                <i class="fas fa-flag"></i>
+            <a href="golf.html" class="cta-button" role="button" aria-label="View golf adventures">
+                <i class="fas fa-flag" aria-hidden="true"></i>
                 View Golf Adventures
             </a>
-            <a href="blog.html" class="cta-button">
-                <i class="fas fa-book-open"></i>
+            <a href="blog.html" class="cta-button" role="button" aria-label="Read my blog">
+                <i class="fas fa-book-open" aria-hidden="true"></i>
                 Read My Blog
             </a>
-        </div>
+        </nav>
 
-        <section class="about">
-            <h2>About Me</h2>
+        <section class="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Me</h2>
             <div class="about-content">
                 <p>I'm an entrepreneur, marketer, and car/golf enthusiast currently based in Atlanta, GA. I love building things, traveling, and learning new skills. My journey combines business acumen with a passion for automotive culture and golf, creating a unique perspective on life and work.</p>
                 
-                <div class="interests">
-                    <div class="interest-item">
-                        <i class="fas fa-briefcase"></i>
+                <div class="interests" role="list">
+                    <div class="interest-item" role="listitem">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
                         <h3>Business</h3>
                         <p>Passionate about entrepreneurship and marketing, always looking for new opportunities to innovate and create value.</p>
                     </div>
-                    <div class="interest-item">
-                        <i class="fas fa-car"></i>
+                    <div class="interest-item" role="listitem">
+                        <i class="fas fa-car" aria-hidden="true"></i>
                         <h3>Automotive</h3>
                         <p>Car enthusiast with a deep appreciation for automotive culture, design, and performance.</p>
                     </div>
-                    <div class="interest-item">
-                        <i class="fas fa-golf-ball"></i>
+                    <div class="interest-item" role="listitem">
+                        <i class="fas fa-golf-ball" aria-hidden="true"></i>
                         <h3>Golf</h3>
                         <p>Avid golfer exploring courses across the country, constantly improving my game and enjoying the challenge.</p>
                     </div>
-                    <div class="interest-item">
-                        <i class="fas fa-plane"></i>
+                    <div class="interest-item" role="listitem">
+                        <i class="fas fa-plane" aria-hidden="true"></i>
                         <h3>Travel</h3>
                         <p>World traveler experiencing different cultures and creating lasting memories across the globe.</p>
                     </div>
@@ -80,14 +80,14 @@
         </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/dannysheehan-" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
+            <div class="social-links" role="navigation" aria-label="Social media links">
+                <a href="https://www.linkedin.com/in/dannysheehan-" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.instagram.com/dannysheehan__" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/dannysheehan__" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
             </div>
             <p class="contact">Get in touch: <a href="mailto:daniel.sheehan03@gmail.com">daniel.sheehan03@gmail.com</a></p>
@@ -96,30 +96,31 @@
     </footer>
 
     <!-- Email Collection Modal -->
-    <div id="emailModal" class="modal">
+    <div id="emailModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
         <div class="modal-content">
-            <h2>Stay Connected!</h2>
-            <p>Enter your email to receive updates and news.</p>
-            <form id="emailForm" onsubmit="return handleEmailSubmit(event)">
-                <input type="email" id="emailInput" placeholder="Your email address" required>
+            <h2 id="modal-title">Stay Connected!</h2>
+            <p id="modal-description">Enter your email to receive updates and news.</p>
+            <form id="emailForm" onsubmit="return handleEmailSubmit(event)" role="form" aria-label="Email subscription form">
+                <input type="email" id="emailInput" placeholder="Your email address" required aria-required="true">
                 <div class="modal-buttons">
-                    <button type="submit" class="submit-btn">Subscribe</button>
-                    <button type="button" class="decline-btn" onclick="closeModal()">No Thanks</button>
+                    <button type="submit" class="submit-btn" aria-label="Subscribe to updates">Subscribe</button>
+                    <button type="button" class="decline-btn" onclick="closeModal()" aria-label="Close subscription modal">No Thanks</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Music Player -->
-    <div class="music-player">
-        <button class="play-btn" onclick="togglePlay()">
-            <i class="fas fa-play" id="playIcon"></i>
+    <div class="music-player" role="complementary" aria-label="Background music player">
+        <button class="play-btn" onclick="togglePlay()" aria-label="Play/pause background music">
+            <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
         </button>
         <span class="song-info">Now Playing: Background Music</span>
         <div class="volume-control">
-            <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="updateVolume(this.value)">
+            <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="updateVolume(this.value)" 
+                   aria-label="Adjust volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
         </div>
-        <audio id="bgMusic" loop>
+        <audio id="bgMusic" loop aria-label="Background music">
             <source src="Ohad Ben Ari - Clair de Lune Debussy.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>

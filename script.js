@@ -54,7 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check if audio element exists and is loaded
     if (bgMusic) {
-        bgMusic.volume = 0.5; // Set initial volume to 50%
+        // Set initial volume from localStorage or default to 50%
+        const savedVolume = localStorage.getItem('musicVolume') || '50';
+        bgMusic.volume = savedVolume / 100;
+        if (volumeSlider) {
+            volumeSlider.value = savedVolume;
+        }
         
         // Add loading event listener
         bgMusic.addEventListener('loadeddata', () => {
@@ -66,6 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
         bgMusic.addEventListener('error', (e) => {
             console.error('Error loading music file:', e);
             document.querySelector('.music-player').style.display = 'none';
+            showStatus('Error loading music player', 'error');
+        });
+
+        // Handle mobile device restrictions
+        bgMusic.addEventListener('play', () => {
+            // If autoplay is blocked, show a message
+            if (bgMusic.paused) {
+                showStatus('Click the play button to start music', 'info');
+            }
         });
     }
 
@@ -77,37 +91,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 bgMusic.pause();
                 playIcon.className = 'fas fa-play';
             } else {
+                // Check if we're on a mobile device
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                if (isMobile) {
+                    showStatus('Tap play to start music', 'info');
+                }
+                
                 const playPromise = bgMusic.play();
                 if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        playIcon.className = 'fas fa-pause';
-                    }).catch(error => {
-                        console.error('Error playing music:', error);
-                    });
+                    playPromise
+                        .then(() => {
+                            playIcon.className = 'fas fa-pause';
+                            isPlaying = true;
+                        })
+                        .catch(error => {
+                            console.error('Error playing music:', error);
+                            showStatus('Unable to play music. Try tapping the play button.', 'error');
+                            isPlaying = false;
+                        });
                 }
             }
-            isPlaying = !isPlaying;
         } catch (error) {
             console.error('Error toggling play state:', error);
+            showStatus('Error playing music', 'error');
         }
     }
 
     window.updateVolume = function(value) {
         if (!bgMusic) return;
-        bgMusic.volume = value / 100;
-    }
-
-    // Save and restore volume preference
-    if (volumeSlider) {
-        const savedVolume = localStorage.getItem('musicVolume');
-        if (savedVolume !== null) {
-            volumeSlider.value = savedVolume;
-            bgMusic.volume = savedVolume / 100;
+        try {
+            bgMusic.volume = value / 100;
+            localStorage.setItem('musicVolume', value);
+        } catch (error) {
+            console.error('Error updating volume:', error);
         }
-
-        volumeSlider.addEventListener('change', (e) => {
-            localStorage.setItem('musicVolume', e.target.value);
-        });
     }
 
     // Initialize star ratings
@@ -134,22 +151,56 @@ function initializeImageLoading() {
             if (entry.isIntersecting) {
                 const wrapper = entry.target;
                 const fullImg = wrapper.querySelector('.full-img');
+                const placeholder = wrapper.querySelector('.placeholder');
                 
                 if (!fullImg.classList.contains('loaded')) {
-                    fullImg.addEventListener('load', () => {
-                        fullImg.classList.add('loaded');
-                    });
+                    // Add loading indicator
+                    if (placeholder) {
+                        placeholder.style.display = 'flex';
+                    }
                     
+                    // Set up error handling
+                    fullImg.onerror = () => {
+                        console.error('Error loading image:', fullImg.src);
+                        if (placeholder) {
+                            placeholder.innerHTML = '<i class="fas fa-exclamation-circle"></i> Failed to load image';
+                            placeholder.style.color = '#ff4444';
+                        }
+                        fullImg.style.display = 'none';
+                    };
+                    
+                    // Set up load handling
+                    fullImg.onload = () => {
+                        fullImg.classList.add('loaded');
+                        if (placeholder) {
+                            placeholder.style.display = 'none';
+                        }
+                        // Clean up observer
+                        observer.unobserve(wrapper);
+                    };
+                    
+                    // Start loading the image
                     fullImg.src = wrapper.dataset.src;
                 }
-                
-                observer.unobserve(wrapper);
             }
         });
     }, observerOptions);
     
+    // Observe all image wrappers
     imageWrappers.forEach(wrapper => {
+        // Add placeholder if it doesn't exist
+        if (!wrapper.querySelector('.placeholder')) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder';
+            placeholder.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            wrapper.appendChild(placeholder);
+        }
         imageObserver.observe(wrapper);
+    });
+    
+    // Clean up observer when page is unloaded
+    window.addEventListener('unload', () => {
+        imageObserver.disconnect();
     });
 }
 
@@ -202,10 +253,8 @@ async function handleEmailSubmit(event) {
     event.preventDefault();
     
     const emailInput = document.getElementById('emailInput');
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
     const submitBtn = document.querySelector('.submit-btn');
-    const statusMessage = document.createElement('div');
-    statusMessage.className = 'status-message';
     
     // Remove any existing status message
     const existingStatus = document.querySelector('.status-message');
@@ -223,6 +272,14 @@ async function handleEmailSubmit(event) {
         return;
     }
 
+    // Check rate limiting
+    const lastSubmission = localStorage.getItem('lastEmailSubmission');
+    const now = Date.now();
+    if (lastSubmission && (now - parseInt(lastSubmission)) < 60000) { // 1 minute cooldown
+        showStatus('Please wait a moment before submitting again.', 'error');
+        return;
+    }
+
     // Disable button and show loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'Subscribing...';
@@ -234,7 +291,8 @@ async function handleEmailSubmit(event) {
             body: JSON.stringify({ email: email }),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            timeout: 10000 // 10 second timeout
         });
 
         if (!response.ok) {
@@ -249,37 +307,18 @@ async function handleEmailSubmit(event) {
             const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
             subscribers.push(email);
             localStorage.setItem('subscribers', JSON.stringify(subscribers));
-            
-            setTimeout(() => {
-                closeModal();
-                emailInput.value = '';
-            }, 2000);
+            localStorage.setItem('lastEmailSubmission', now.toString());
+            closeModal();
         } else {
-            throw new Error(result.message || 'Subscription failed');
+            throw new Error(result.error || 'Subscription failed');
         }
     } catch (error) {
         console.error('Subscription error:', error);
-        showStatus(
-            error.message === 'Failed to fetch' 
-                ? 'Unable to connect to the server. Please check your internet connection.'
-                : `Error: ${error.message}`,
-            'error'
-        );
+        showStatus('Failed to subscribe. Please try again later.', 'error');
     } finally {
         // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Subscribe';
-    }
-    
-    function showStatus(message, type) {
-        const statusDiv = document.querySelector('.status-message') || document.createElement('div');
-        statusDiv.className = `status-message ${type}`;
-        statusDiv.textContent = message;
-        
-        const form = document.getElementById('emailForm');
-        if (!form.contains(statusDiv)) {
-            form.insertBefore(statusDiv, form.firstChild);
-        }
     }
 }
 
@@ -291,19 +330,35 @@ function isValidEmail(email) {
 
 // Email modal functionality
 function showModal() {
+    // Check if user has already subscribed
+    const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+    const email = document.getElementById('emailInput')?.value;
+    
+    if (subscribers.includes(email)) {
+        return; // Don't show modal if already subscribed
+    }
+    
     const modal = document.getElementById('emailModal');
-    modal.style.display = 'flex';
-    // Force reflow
-    modal.offsetHeight;
-    modal.classList.add('show');
+    if (modal) {
+        modal.style.display = 'flex';
+        // Focus the email input
+        const emailInput = document.getElementById('emailInput');
+        if (emailInput) {
+            setTimeout(() => emailInput.focus(), 100);
+        }
+    }
 }
 
 function closeModal() {
     const modal = document.getElementById('emailModal');
-    modal.classList.remove('show');
-    setTimeout(() => {
+    if (modal) {
         modal.style.display = 'none';
-    }, 300);
+        // Clear the form
+        const form = document.getElementById('emailForm');
+        if (form) {
+            form.reset();
+        }
+    }
 }
 
 // Blog functionality
