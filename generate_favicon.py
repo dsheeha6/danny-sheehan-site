@@ -9,7 +9,7 @@ def create_favicon():
     
     # Try to use a system font, fall back to default if not available
     try:
-        font = ImageFont.truetype("Arial", 20)
+        font = ImageFont.truetype("Arial", 16)  # Reduced font size for better fit
     except:
         font = ImageFont.load_default()
     
@@ -23,10 +23,11 @@ def create_favicon():
     x = (size[0] - text_width) // 2
     y = (size[1] - text_height) // 2
     
+    # Draw text with a slight offset for better visibility
     draw.text((x, y), text, fill='black', font=font)
     
-    # Save as ICO file
-    image.save('favicon.ico', format='ICO')
+    # Save as ICO file with multiple sizes
+    image.save('favicon.ico', format='ICO', sizes=[(16, 16), (32, 32)])
     print("Favicon created successfully!")
 
 if __name__ == "__main__":
